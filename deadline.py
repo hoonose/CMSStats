@@ -36,7 +36,8 @@ def students_to_times(fname,yr):
   return dates
 
 def main(fname,hr,mint,day,mth,yr):
-  dd = datetime.datetime(yr,day,mth,hr,mint)
+  dd = datetime.datetime(yr,mth,day,hr,mint)
+  print dd
   dates = students_to_times(fname,yr)
   dates.sort()
   dates.reverse()
