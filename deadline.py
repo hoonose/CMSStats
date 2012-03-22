@@ -37,7 +37,6 @@ def students_to_times(fname,yr):
 
 def main(fname,hr,mint,day,mth,yr):
   dd = datetime.datetime(yr,mth,day,hr,mint)
-  print dd
   dates = students_to_times(fname,yr)
   dates.sort()
   dates.reverse()
@@ -51,6 +50,11 @@ def main(fname,hr,mint,day,mth,yr):
     ttd_div = 60
     word = 'Minutes'
     bin_div = 100
+  late_cutoff = raw_input('I want to see submissions up to X minutes after the deadline (enter "all" to see all): ')
+  if late_cutoff != 'all':
+    late_cutoff = int(late_cutoff)
+    filt = datetime.timedelta(0,0,0,0,late_cutoff)
+    ttd = filter(lambda x: x > -filt,ttd)
   ttd = [(el.seconds + el.days*24*3600)/ttd_div for el in ttd]
   cutoff = raw_input('I want to see submissions for the last X ' + word + ' (enter "all" to see all): ')
   if cutoff != 'all':
